@@ -1,14 +1,15 @@
 Summary:	glibc plugin for local system host name resolution
-Name:		nss-myhostname
+Name:		nss_myhostname
 Version:	0.3
 Release:	1
 License:	LGPL v2+
 Group:		Libraries
 URL:		http://0pointer.de/lennart/projects/nss-myhostname/
-Source0:	http://0pointer.de/lennart/projects/nss-myhostname/%{name}-%{version}.tar.gz
+Source0:	http://0pointer.de/lennart/projects/nss-myhostname/nss-myhostname-%{version}.tar.gz
 # Source0-md5:	d4ab9ac36c053ab8fb836db1cbd4a48f
 Requires:	/sbin/ldconfig
 Requires:	sed >= 4.0
+Obsoletes:		nss-myhostname
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -18,7 +19,7 @@ resolution for the locally configured system hostname as returned by
 gethostname(2).
 
 %prep
-%setup -q
+%setup -q -n nss-myhostname-%{version}
 
 %build
 %configure \
@@ -31,7 +32,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/%{name}
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/nss-myhostname
 
 %clean
 rm -rf $RPM_BUILD_ROOT
